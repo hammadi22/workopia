@@ -1,8 +1,6 @@
 <?php loadPartial('head'); ?> 
 <!-- Nav -->
 <?php loadPartial('navbar'); ?>
-<!-- Showcase -->
-<?php loadPartial('showcase-search'); ?>
 <!-- Top Banner -->
 <?php loadPartial('top-banner'); ?>
     <!-- Job Listings -->
@@ -189,10 +187,6 @@
             </div>
           </div>
         </div>
-        <a href="/listings" class="block text-xl text-center">
-          <i class="fa fa-arrow-alt-circle-right"></i>
-          Show All Jobs
-        </a>
       </section>
 <!-- Bottom Banner -->
 <?php loadPartial('bottom-banner'); ?> 

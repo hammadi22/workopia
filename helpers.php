@@ -62,7 +62,7 @@ function loadView ($name) {
  * @return void
  */
 
- function inspectAndDIe($value) {
+ function inspectAndDie($value) {
     echo '<pre>';
     die(var_dump($value));
     echo '</pre>';
