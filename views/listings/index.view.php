@@ -26,7 +26,7 @@
                   >
                 </li>
                 <li class="mb-2">
-                  <strong>Tags:</strong> <?= $listing->tags ?>
+                  <strong>Tags:</strong> <?= $listing->tags ?>  
                 </li>
               </ul>
               <a href="/listing/<?= $listing->id ?>"
