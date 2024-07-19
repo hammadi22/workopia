@@ -11,7 +11,11 @@ class ListingController {
         $config = require basePath('config/db.php');
         $this->db = new Database($config);
     }
-
+    /**
+     * show the latest listings
+     * 
+     * @return void
+     */
     public function index() {
         $listings = $this->db->query('SELECT * from listings')->fetchAll();
 
@@ -20,11 +24,19 @@ class ListingController {
         'listings' => $listings
     ]);
     }
-
+    /**
+     * show the create page 
+     * 
+     * @return void 
+     */
     public function create() {
         loadView('listings/create');
     }
-
+    /**
+     * show single lsiting
+     * 
+     * @return void
+     */
     public function show() {
         $id = $_GET['id'] ?? '';
 

@@ -2,6 +2,8 @@
 
 namespace Framework;
 
+use App\controllers\ErrorController;
+
 class Router {
     protected $routes = [];
 
@@ -65,19 +67,7 @@ class Router {
       * @param string $uri
       * @param string $controller
       *@return void
-      */
-
-     /**
-      * Load error page
-      * @param int httpCode
-      * @return void
-      */
-
-     public function error($httpCode = 404) {
-        http_response_code($httpCode);
-        loadView("error/{$httpCode}");
-        exit;
-     } 
+      */ 
       
      public function route($uri, $method){
         foreach($this->routes as $route) {
@@ -93,6 +83,6 @@ class Router {
                 return;
             }
         }
-        $this->error();
-     }
+        ErrorController::notFound();
+   }
 }
