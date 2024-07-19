@@ -1,0 +1,16 @@
+{
+    "name": "hammadi22/workopia-php",
+    "description": "job listing application",
+    "autohrs": [
+                {
+                  "nmae": "Houssem Eddine Hammadi",
+                  "email": "hammadi.houssem.edin@gmail.com"
+                } 
+    ],
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "Framework/",
+            "App\\": "App/"
+        }
+    }
+}
