@@ -69,8 +69,49 @@ class Router {
       *@return void
       */ 
       
-     public function route($uri, $method){
+     public function route($uri){
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
         foreach($this->routes as $route) {
+            
+         
+         // Split current URI into segment 
+         $uriSegments = explode('/', trim($uri, '/'));
+         
+         // Split the route  URI into segments
+         $routeSegments = explode('/', trim($route['uri'], '/'));
+
+         $match = true;
+
+         // Check if the number of segments matches 
+         if(count($uriSegments) === count($routeSegments) && strtoupper($route['method'] === $requestMethod)) {
+            $params = [];
+
+            $match = true; 
+            for($i = 0; $i < count($uriSegments); $i++) {
+               // If the URI's do not match and there is no param
+               if($routeSegments[$i]!== $uriSegments[$i] && !preg_match('/\{(.+?)\}/', $routeSegments[$i])) {
+                  $match = false;
+                  break;
+               }
+               // check for the param and add to the $params array
+               if(preg_match('/\{(.+?)\}/', $routeSegments[$i], $matches)) {
+                  $params[$matches[1]] = $uriSegments[$i];
+               }
+            }
+            if($match) {
+               // Extract controller and controller method
+               $controller = 'App\\controllers\\' . $route['controller'];
+               $controllerMethod = $route['controllerMethod'];
+
+
+               // instantiate the controller and call the method 
+               $controllerInstance = new $controller();
+               $controllerInstance->$controllerMethod($params);
+               return;
+            }
+         }
+           /* $requestMethod = $_SERVER['REQUEST_METHOD'];
+
             if($route['uri'] === $uri && $route['method'] === $method) {
                 // Extract controller and controller method
                 $controller = 'App\\controllers\\' . $route['controller'];
@@ -81,7 +122,7 @@ class Router {
                 $controllerInstance = new $controller();
                 $controllerInstance->$controllerMethod();
                 return;
-            }
+            } */
         }
         ErrorController::notFound();
    }
