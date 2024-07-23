@@ -4,6 +4,7 @@ namespace App\Controllers;
 namespace App\controllers;
 
 use Framework\Database;
+use Framework\Validation;
 
 class ListingController {
     protected $db;
@@ -18,6 +19,7 @@ class ListingController {
      * @return void
      */
     public function index() {
+        inspectAndDie(Validation::string(''));
         $listings = $this->db->query('SELECT * from listings')->fetchAll();
 
 
