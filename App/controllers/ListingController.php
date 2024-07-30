@@ -19,10 +19,8 @@ class ListingController {
      * @return void
      */
     public function index() {
-        inspectAndDie(Validation::string(''));
         $listings = $this->db->query('SELECT * from listings')->fetchAll();
-
-
+ 
         loadView('listings/index', [
         'listings' => $listings
     ]);
@@ -60,4 +58,14 @@ class ListingController {
         'listing' => $listing
     ]);
     }
+
+    /**
+     * Store data in database 
+     * 
+     * @return void 
+     */
+
+     public function store() {
+        inspectAndDie($_POST);
+     }
 }
